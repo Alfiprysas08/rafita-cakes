@@ -22,7 +22,6 @@
   />
 
   <style>
-
     :root {
       --brown: #4b221b;
       --brown-dark: #3b1713;
@@ -39,6 +38,10 @@
       font-family: 'Poppins', sans-serif;
     }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
     body {
       background:
         linear-gradient(
@@ -50,12 +53,8 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-
       color: var(--text);
-
       padding-top: 90px;
-
-      overflow-x: hidden;
     }
 
     /* NAVBAR */
@@ -63,9 +62,7 @@
     .navbar-custom {
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(12px);
-
       border-bottom: 1px solid rgba(0,0,0,0.04);
-
       box-shadow: 0 10px 25px rgba(0,0,0,0.04);
     }
 
@@ -74,34 +71,25 @@
     }
 
     .brand-logo {
-      height: 56px;
+      height: 52px;
       width: auto;
+      object-fit: contain;
     }
 
     .nav-link {
       color: var(--brown) !important;
-
       font-weight: 600;
-
-      padding: 11px 18px !important;
-
+      font-size: 0.92rem;
+      padding: 10px 16px !important;
       border-radius: 999px;
-
       margin: 0 5px;
-
       transition: 0.2s ease;
     }
 
     .nav-link:hover,
     .nav-link.active {
-      background: linear-gradient(
-        135deg,
-        var(--pink),
-        var(--pink-dark)
-      );
-
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
       color: white !important;
-
       box-shadow: 0 10px 20px rgba(228,125,125,0.25);
     }
 
@@ -115,70 +103,74 @@
     .cart-link {
       text-decoration: none;
       color: var(--brown);
-
       font-weight: 700;
-
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .cart-badge {
-      min-width: 32px;
-      height: 32px;
+    .cart-link i {
+      font-size: 1rem;
+    }
 
+    .cart-badge {
+      min-width: 28px;
+      height: 28px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 999px;
-
       background: var(--pink);
-
       color: white;
-
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 700;
+    }
+
+    .navbar-toggler {
+      border: none;
+      box-shadow: none !important;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none !important;
+    }
+
+    .navbar-toggler-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%234b221b' stroke-width='2.2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
 
     /* HERO */
 
     .page-hero {
-      padding: 70px 0 40px;
+      padding: 60px 0 34px;
       text-align: center;
     }
 
     .eyebrow {
       color: var(--pink);
-
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
-
-      letter-spacing: 0.35em;
-
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .page-title {
       color: var(--brown);
-
-      font-size: clamp(2.4rem, 5vw, 4rem);
-
+      font-size: clamp(2rem, 4vw, 3.4rem);
       font-weight: 800;
-
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .page-text {
-      max-width: 700px;
-
+      max-width: 680px;
       margin: auto;
-
-      line-height: 1.9;
-
+      line-height: 1.8;
       color: #6a514b;
+      font-size: 0.98rem;
     }
 
     /* PRODUCT */
@@ -186,122 +178,89 @@
     .section-title {
       color: var(--brown);
       font-weight: 800;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
 
     .product-card {
       border: none;
-
-      border-radius: 32px;
-
+      border-radius: 28px;
       overflow: hidden;
-
-      background: rgba(255,255,255,0.84);
-
+      background: rgba(255,255,255,0.86);
       backdrop-filter: blur(10px);
-
-      box-shadow:
-        0 18px 35px rgba(0,0,0,0.05);
-
+      box-shadow: 0 18px 35px rgba(0,0,0,0.05);
       transition: 0.25s ease;
-
       height: 100%;
     }
 
     .product-card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-7px);
+      box-shadow: 0 22px 40px rgba(0,0,0,0.08);
     }
 
     .product-img {
       width: 100%;
-      height: 360px;
-
+      height: 330px;
       object-fit: cover;
       object-position: center;
     }
 
-    .card-body {
-      padding: 24px;
+    .product-card .card-body {
+      padding: 22px;
     }
 
     .badge-pink {
       display: inline-flex;
-
       background: rgba(228,125,125,0.14);
-
       color: var(--pink-dark);
-
-      padding: 8px 16px;
-
+      padding: 7px 14px;
       border-radius: 999px;
-
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
-
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
     }
 
     .product-name {
       color: var(--brown);
-
-      font-size: 1.45rem;
+      font-size: 1.25rem;
       font-weight: 800;
-
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .product-desc {
       color: #6a514b;
-
-      line-height: 1.8;
-
-      margin-bottom: 18px;
-
-      min-height: 88px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      min-height: 78px;
+      font-size: 0.95rem;
     }
 
     .harga {
       color: var(--pink-dark);
-
       font-weight: 800;
-
-      font-size: 1.3rem;
-
+      font-size: 1.12rem;
       margin-bottom: 0;
     }
 
     .btn-cart {
       width: 100%;
-
       border: none;
-
-      border-radius: 16px;
-
-      padding: 14px 18px;
-
-      margin-top: 20px;
-
-      background: linear-gradient(
-        135deg,
-        var(--pink),
-        var(--pink-dark)
-      );
-
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 18px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
       color: white;
-
       font-weight: 700;
-
+      font-size: 0.92rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-
+      gap: 10px;
       transition: 0.2s ease;
     }
 
     .btn-cart:hover {
       transform: translateY(-2px);
-
       box-shadow: 0 14px 24px rgba(228,125,125,0.28);
     }
 
@@ -309,30 +268,23 @@
 
     footer {
       margin-top: 70px;
-
-      background: linear-gradient(
-        180deg,
-        var(--brown),
-        var(--brown-dark)
-      );
-
+      background: linear-gradient(180deg, var(--brown), var(--brown-dark));
       color: rgba(255,255,255,0.95);
-
       text-align: center;
-
-      padding: 18px 14px;
+      padding: 16px 14px;
+      font-size: 0.9rem;
     }
 
     footer small {
       display: block;
-      margin-top: 5px;
+      margin-top: 4px;
       color: rgba(255,255,255,0.75);
+      font-size: 0.78rem;
     }
 
     /* RESPONSIVE */
 
     @media (max-width: 991px) {
-
       body {
         padding-top: 82px;
       }
@@ -342,46 +294,62 @@
       }
 
       .product-img {
-        height: 320px;
+        height: 300px;
       }
 
+      .page-hero {
+        padding: 52px 0 30px;
+      }
     }
 
     @media (max-width: 768px) {
-
       .brand-logo {
-        height: 44px;
+        height: 42px;
       }
 
       .page-title {
-        font-size: 2.3rem;
+        font-size: 2rem;
+      }
+
+      .page-text {
+        font-size: 0.92rem;
       }
 
       .section-title {
-        font-size: 1.7rem;
+        font-size: 1.45rem;
       }
 
-    }
+      .product-img {
+        height: 280px;
+      }
 
+      .product-name {
+        font-size: 1.15rem;
+      }
+
+      .product-desc {
+        min-height: auto;
+        font-size: 0.9rem;
+      }
+
+      .btn-cart {
+        font-size: 0.88rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-
   <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-
     <div class="container">
-
       <a class="navbar-brand p-0" href="index.html">
-
         <img
           src="assets/gambar/logo.png"
           alt="Rafita's Cake & Bakery"
           class="brand-logo"
         >
-
       </a>
 
       <button
@@ -389,340 +357,198 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-
         <ul class="navbar-nav mx-auto align-items-lg-center mt-3 mt-lg-0">
-
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              Beranda
-            </a>
+            <a class="nav-link" href="index.html">Beranda</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="produk.html">
-              Produk
-            </a>
+            <a class="nav-link active" href="produk.html">Produk</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="about.html">
-              Tentang
-            </a>
+            <a class="nav-link" href="about.html">Tentang</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="kontak.html">
-              Kontak
-            </a>
+            <a class="nav-link" href="kontak.html">Kontak</a>
           </li>
-
         </ul>
 
         <div class="d-flex align-items-center mt-3 mt-lg-0">
-
           <div class="nav-divider d-none d-lg-block"></div>
 
           <a href="keranjang.html" class="cart-link">
-
             <i class="bi bi-cart3"></i>
-
             <span>Keranjang</span>
-
-            <span
-              id="cartBadge"
-              class="cart-badge"
-              style="display:none;"
-            >
-              0
-            </span>
-
+            <span id="cartBadge" class="cart-badge" style="display:none;">0</span>
           </a>
-
         </div>
-
       </div>
-
     </div>
-
   </nav>
 
   <!-- HERO -->
-
   <section class="page-hero">
-
     <div class="container">
-
-      <div class="eyebrow">
-        Sweet Premium Cakes
-      </div>
-
-      <h1 class="page-title">
-        Koleksi Produk Kami
-      </h1>
-
+      <div class="eyebrow">Sweet Premium Cakes</div>
+      <h1 class="page-title">Koleksi Produk Kami</h1>
       <p class="page-text">
-        Pilihan cake premium dengan desain elegan,
-        rasa lembut, dan tampilan cantik untuk setiap
-        momen spesial bersama Rafita's Cake & Bakery.
+        Pilihan cake premium dengan desain elegan, rasa lembut, dan tampilan cantik
+        untuk setiap momen spesial bersama Rafita's Cake & Bakery.
       </p>
-
     </div>
-
   </section>
 
   <!-- PRODUK -->
-
   <section class="pb-5">
-
     <div class="container">
-
       <div class="row g-4">
 
         <!-- PRODUK 1 -->
-
         <div class="col-md-6 col-lg-4">
-
           <div class="product-card">
-
             <img
               src="assets/gambar/cake 1.png"
               class="product-img"
               alt="Ocean Baby Cake"
             >
-
             <div class="card-body">
-
-              <span class="badge-pink">
-                Kids Collection
-              </span>
-
-              <h3 class="product-name">
-                Ocean Baby Cake
-              </h3>
-
+              <span class="badge-pink">Kids Collection</span>
+              <h3 class="product-name">Ocean Baby Cake</h3>
               <p class="product-desc">
-                Birthday cake pastel bertema bawah laut
-                dengan dekorasi lucu dan warna ceria.
+                Birthday cake pastel bertema bawah laut dengan dekorasi lucu dan warna ceria.
               </p>
-
-              <p class="harga">
-                Rp 185.000
-              </p>
-
-              <button
-                class="btn-cart"
-                onclick="addToCart(1)"
-              >
+              <p class="harga">Rp 185.000</p>
+              <button class="btn-cart" onclick="addToCart(1)">
                 <i class="bi bi-bag-plus-fill"></i>
                 Tambah ke Keranjang
               </button>
-
             </div>
-
           </div>
-
         </div>
 
         <!-- PRODUK 2 -->
-
         <div class="col-md-6 col-lg-4">
-
           <div class="product-card">
-
             <img
               src="assets/gambar/cake 2.png"
               class="product-img"
               alt="Barca Champion Cake"
             >
-
             <div class="card-body">
-
-              <span class="badge-pink">
-                Sport Edition
-              </span>
-
-              <h3 class="product-name">
-                Barca Champion Cake
-              </h3>
-
+              <span class="badge-pink">Sport Edition</span>
+              <h3 class="product-name">Barca Champion Cake</h3>
               <p class="product-desc">
-                Cake bertema sepak bola dengan nuansa
-                Barcelona yang keren dan elegan.
+                Cake bertema sepak bola dengan nuansa Barcelona yang keren dan elegan.
               </p>
-
-              <p class="harga">
-                Rp 210.000
-              </p>
-
-              <button
-                class="btn-cart"
-                onclick="addToCart(2)"
-              >
+              <p class="harga">Rp 210.000</p>
+              <button class="btn-cart" onclick="addToCart(2)">
                 <i class="bi bi-bag-plus-fill"></i>
                 Tambah ke Keranjang
               </button>
-
             </div>
-
           </div>
-
         </div>
 
         <!-- PRODUK 3 -->
-
         <div class="col-md-6 col-lg-4">
-
           <div class="product-card">
-
             <img
               src="assets/gambar/cake 3.png"
               class="product-img"
               alt="Golden Melody Cake"
             >
-
             <div class="card-body">
-
-              <span class="badge-pink">
-                Luxury Collection
-              </span>
-
-              <h3 class="product-name">
-                Golden Melody Cake
-              </h3>
-
+              <span class="badge-pink">Luxury Collection</span>
+              <h3 class="product-name">Golden Melody Cake</h3>
               <p class="product-desc">
-                Cake hitam elegan dengan dekorasi emas
-                dan tema musik premium yang artistik.
+                Cake hitam elegan dengan dekorasi emas dan tema musik premium yang artistik.
               </p>
-
-              <p class="harga">
-                Rp 245.000
-              </p>
-
-              <button
-                class="btn-cart"
-                onclick="addToCart(3)"
-              >
+              <p class="harga">Rp 245.000</p>
+              <button class="btn-cart" onclick="addToCart(3)">
                 <i class="bi bi-bag-plus-fill"></i>
                 Tambah ke Keranjang
               </button>
-
             </div>
-
           </div>
-
         </div>
 
       </div>
-
     </div>
-
   </section>
 
   <!-- FOOTER -->
-
   <footer>
-
     © 2026 Rafita's Cake & Bakery. All Rights Reserved.
-
-    <small>
-      Fresh, sweet, and made with love.
-    </small>
-
+    <small>Fresh, sweet, and made with love.</small>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-
     const products = {
-
       1: {
         id: 1,
         name: 'Ocean Baby Cake',
         price: 185000,
         image: 'assets/gambar/cake 1.png'
       },
-
       2: {
         id: 2,
         name: 'Barca Champion Cake',
         price: 210000,
         image: 'assets/gambar/cake 2.png'
       },
-
       3: {
         id: 3,
         name: 'Golden Melody Cake',
         price: 245000,
         image: 'assets/gambar/cake 3.png'
       }
-
     };
 
     function getCart() {
-      return JSON.parse(
-        localStorage.getItem('rafita_cart') || '[]'
-      );
+      return JSON.parse(localStorage.getItem('rafita_cart') || '[]');
     }
 
     function saveCart(cart) {
-      localStorage.setItem(
-        'rafita_cart',
-        JSON.stringify(cart)
-      );
-
+      localStorage.setItem('rafita_cart', JSON.stringify(cart));
       updateCartBadge();
     }
 
     function updateCartBadge() {
-
       const cart = getCart();
-
-      const totalItems = cart.reduce(
-        (sum, item) => sum + item.qty,
-        0
-      );
-
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
       const badge = document.getElementById('cartBadge');
 
       if (!badge) return;
 
       if (totalItems > 0) {
-
         badge.textContent = totalItems;
-
         badge.style.display = 'inline-flex';
-
       } else {
-
         badge.style.display = 'none';
-
       }
-
     }
 
     function addToCart(productId) {
-
       const product = products[productId];
-
       let cart = getCart();
 
-      const foundIndex = cart.findIndex(
-        item => item.id === product.id
-      );
+      const foundIndex = cart.findIndex(item => item.id === product.id);
 
       if (foundIndex > -1) {
-
         cart[foundIndex].qty += 1;
-
       } else {
-
         cart.push({
           id: product.id,
           name: product.name,
@@ -730,17 +556,13 @@
           image: product.image,
           qty: 1
         });
-
       }
 
       saveCart(cart);
-
       alert(product.name + ' berhasil ditambahkan ke keranjang.');
-
     }
 
     updateCartBadge();
-
   </script>
 
 </body>
