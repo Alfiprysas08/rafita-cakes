@@ -435,7 +435,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function getCart() {
-      return JSON.parse(localStorage.getItem('rafita_cart') || '[]');
+      return JSON.parse(sessionStorage.getItem('rafita_cart') || '[]');
     }
 
     function updateCartBadge() {

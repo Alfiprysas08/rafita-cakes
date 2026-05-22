@@ -433,27 +433,27 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function getCart() {
-      return JSON.parse(localStorage.getItem('rafita_cart') || '[]');
-    }
-
-    function updateCartBadge() {
-      const cart = getCart();
-      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-      const badge = document.getElementById('cartBadge');
-
-      if (!badge) return;
-
-      if (totalItems > 0) {
-        badge.textContent = totalItems;
-        badge.style.display = 'inline-flex';
-      } else {
-        badge.style.display = 'none';
+    <script>
+      function getCart() {
+        return JSON.parse(sessionStorage.getItem('rafita_cart') || '[]');
       }
-    }
 
-    updateCartBadge();
-  </script>
+      function updateCartBadge() {
+        const cart = getCart();
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        const badge = document.getElementById('cartBadge');
+
+        if (!badge) return;
+
+        if (totalItems > 0) {
+          badge.textContent = totalItems;
+          badge.style.display = 'inline-flex';
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+
+      updateCartBadge();
+    </script>
 </body>
 </html>
