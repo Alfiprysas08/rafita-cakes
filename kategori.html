@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kategori Produk | Rafita's Cake & Bakery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --brown: #4b221b;
+      --brown-dark: #3b1713;
+      --pink: #e47d7d;
+      --pink-dark: #d96d73;
+      --text: #5f4742;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html, body {
+      overflow-x: hidden;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(255,248,247,0.94), rgba(255,248,247,0.96)),
+        url('assets/gambar/background-home.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--text);
+      padding-top: 90px;
+    }
+
+    .navbar-custom {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    }
+
+    .navbar .container {
+      min-height: 88px;
+    }
+
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-link {
+      color: var(--brown) !important;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 10px 16px !important;
+      border-radius: 999px;
+      margin: 0 5px;
+      transition: 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white !important;
+      box-shadow: 0 10px 20px rgba(228,125,125,0.25);
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 35px;
+      background: rgba(0,0,0,0.08);
+      margin: 0 10px;
+    }
+
+    .cart-link {
+      text-decoration: none;
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-badge {
+      min-width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--pink);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .navbar-toggler {
+      border: none;
+      box-shadow: none !important;
+    }
+
+    .navbar-toggler-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%234b221b' stroke-width='2.2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .page-hero {
+      padding: 60px 0 34px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      color: var(--brown);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .page-text {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.8;
+      color: #6a514b;
+      font-size: 0.98rem;
+    }
+
+    .category-type-block {
+      margin-bottom: 44px;
+    }
+
+    .category-type-title {
+      color: var(--brown);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .product-card {
+      border: 1px solid rgba(75,34,27,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.92);
+      transition: 0.25s ease;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      border-color: rgba(0,145,32,0.28);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .product-card .card-body {
+      padding: 22px;
+    }
+
+    .menu-product-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 124px;
+      gap: 18px;
+      min-height: 206px;
+      padding: 18px 16px 16px 20px;
+      cursor: pointer;
+    }
+
+    .menu-product-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .menu-product-name {
+      color: #191919;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .menu-product-desc {
+      color: #6a514b;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .menu-product-price {
+      color: #111;
+      font-weight: 800;
+      font-size: 0.93rem;
+      margin-bottom: 0;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .price-old {
+      color: #777;
+      font-weight: 700;
+      text-decoration: line-through;
+    }
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 56px;
+      border-radius: 999px;
+      padding: 5px 12px;
+      background: #ef3b4a;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .menu-product-media {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .menu-product-img {
+      width: 124px;
+      height: 124px;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .btn-menu-add {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #008f24;
+      border-radius: 999px;
+      background: white;
+      color: #008f24;
+      font-weight: 800;
+      padding: 8px 16px;
+      transition: 0.2s ease;
+      width: 100%;
+    }
+
+    .btn-menu-add:hover {
+      background: #008f24;
+      color: white;
+    }
+
+    .product-modal .modal-content {
+      border: none;
+      border-radius: 8px;
+      overflow: visible;
+      background: white;
+    }
+
+    .product-modal .modal-dialog {
+      max-width: 410px;
+    }
+
+    .modal-product-close {
+      position: absolute;
+      right: -18px;
+      top: -48px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 999px;
+      background: white;
+      color: #009321;
+      font-size: 1.55rem;
+      line-height: 1;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-product-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .modal-product-body {
+      padding: 16px 14px 16px;
+    }
+
+    .modal-product-title {
+      color: #222;
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-product-price {
+      color: #111;
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    .btn-modal-cart {
+      border: none;
+      border-radius: 999px;
+      background: #009321;
+      color: white;
+      font-weight: 800;
+      width: 100%;
+      padding: 12px 16px;
+      transition: 0.2s ease;
+    }
+
+    .btn-modal-cart:hover {
+      background: #007f1c;
+      color: white;
+    }
+
+    .badge-pink {
+      display: inline-flex;
+      background: rgba(228,125,125,0.14);
+      color: var(--pink-dark);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .product-name {
+      color: var(--brown);
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .product-desc {
+      color: #6a514b;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      min-height: 78px;
+      font-size: 0.95rem;
+    }
+
+    .harga {
+      color: var(--pink-dark);
+      font-weight: 800;
+      font-size: 1.12rem;
+      margin-bottom: 0;
+    }
+
+    .btn-cart,
+    .btn-pink {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 18px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: 0.2s ease;
+    }
+
+    .btn-cart:hover,
+    .btn-pink:hover {
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(228,125,125,0.28);
+    }
+
+    .empty-category {
+      border: 1px dashed rgba(228,125,125,0.35);
+      border-radius: 20px;
+      padding: 28px;
+      color: #7a625c;
+      background: rgba(255,255,255,0.62);
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 70px;
+      background: linear-gradient(180deg, var(--brown), var(--brown-dark));
+      color: rgba(255,255,255,0.95);
+      text-align: center;
+      padding: 16px 14px;
+      font-size: 0.9rem;
+    }
+
+    footer small {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 991px) {
+      body {
+        padding-top: 82px;
+      }
+
+      .nav-divider {
+        display: none;
+      }
+
+      .product-img {
+        height: 300px;
+      }
+
+      .menu-product-card {
+        grid-template-columns: minmax(0, 1fr) 118px;
+      }
+
+      .menu-product-img {
+        width: 118px;
+        height: 118px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .brand-logo {
+        height: 42px;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .page-text {
+        font-size: 0.92rem;
+      }
+
+      .product-img {
+        height: 280px;
+      }
+
+      .product-desc {
+        min-height: auto;
+      }
+
+      .menu-product-card {
+        min-height: 180px;
+        padding: 16px;
+      }
+
+      .modal-product-close {
+        right: 8px;
+        top: -46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand p-0" href="index.html">
+        <img src="assets/gambar/Logo.png" alt="Rafita's Cake & Bakery" class="brand-logo" />
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto align-items-lg-center mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+          
+          <li class="nav-item"><a class="nav-link" href="promo.html">Promo</a></li>
+          <li class="nav-item"><a class="nav-link active" href="produk.html">Produk</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">Tentang</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center mt-3 mt-lg-0">
+          <div class="nav-divider d-none d-lg-block"></div>
+          <a href="keranjang.html" class="cart-link">
+            <i class="bi bi-cart3"></i>
+            <span>Keranjang</span>
+            <span id="cartBadge" class="cart-badge" style="display:none;">0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">Rafita Cakes</div>
+      <h1 class="page-title" id="categoryTitle">Kategori Produk</h1>
+      <p class="page-text" id="categoryText">Memuat produk kategori...</p>
+      <a href="produk.html" class="btn btn-outline-danger rounded-pill px-4 py-2 mt-4">
+        <i class="bi bi-arrow-left"></i>
+        Semua Kategori
+      </a>
+    </div>
+  </section>
+
+  <section class="pb-5">
+    <div class="container" id="categoryContent">
+      <div class="empty-category">Memuat produk...</div>
+    </div>
+  </section>
+
+  <div class="modal fade product-modal" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="modal-product-close" data-bs-dismiss="modal" aria-label="Tutup">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <img id="modalProductImage" class="modal-product-img" src="assets/gambar/cake-hero.png" alt="" />
+        <div class="modal-product-body">
+          <h3 class="modal-product-title" id="modalProductName"></h3>
+          <div class="modal-product-price" id="modalProductPrice"></div>
+          <label class="form-label fw-bold" for="modalProductVariant">Variant</label>
+          <select class="form-select mb-3" id="modalProductVariant"></select>
+          <button type="button" class="btn-modal-cart" id="modalAddButton">
+            Tambah ke keranjang
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Rafita's Cake & Bakery. All Rights Reserved.
+    <small>Fresh, sweet, and made with love.</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import {
+      formatRupiah,
+      getCart,
+      saveCart,
+      updateCartBadge,
+      loadCatalog,
+      normalizeImageUrl,
+      toArray
+    } from './assets/js/store.js';
+
+    let catalogProducts = {};
+    let catalogVariants = {};
+    let selectedProductId = null;
+    let productModal = null;
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[char]));
+    }
+
+    function isActive(item) {
+      return item?.active !== false && item?.active !== 'false';
+    }
+
+    function normalizeValue(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getProductCategoryId(product) {
+      return product.categoryId || product.category_id || product.category || '';
+    }
+
+    function getProductType(product) {
+      return normalizeValue(product.type || 'regular');
+    }
+
+    function formatMenuPrice(value) {
+      return new Intl.NumberFormat('id-ID', {
+        minimumFractionDigits: 0
+      }).format(Number(value || 0));
+    }
+
+    function isPromoVariant(variant) {
+      return isActive(variant) && variant?.promoActive === true && Number(variant.promoPrice || 0) > 0;
+    }
+
+    function getVariantPrice(variant) {
+      return isPromoVariant(variant) ? Number(variant.promoPrice || 0) : Number(variant.price || 0);
+    }
+
+    function renderPrice(value) {
+      return formatMenuPrice(value);
+    }
+
+    function renderPromoPrice(variant, className = 'menu-product-price') {
+      if (!variant) return '<p class="menu-product-price">Harga belum tersedia</p>';
+
+      if (!isPromoVariant(variant)) {
+        return `<p class="${className}">${renderPrice(variant.price)}</p>`;
+      }
+
+      return `
+        <div class="price-row">
+          <span class="${className}">${renderPrice(variant.promoPrice)}</span>
+          <span class="price-old">${renderPrice(variant.price)}</span>
+          <span class="promo-badge">Promo</span>
+        </div>
+      `;
+    }
+
+    function productMatchesCategory(product, category) {
+      const productCategory = normalizeValue(getProductCategoryId(product));
+      const categoryId = normalizeValue(category.id);
+      const categoryName = normalizeValue(category.name);
+
+      return productCategory === categoryId || productCategory === categoryName;
+    }
+
+    function renderProductCard(product, category) {
+      const activeVariants = getActiveVariants(product.id);
+      const lowestVariant = activeVariants
+        .sort((a, b) => getVariantPrice(a) - getVariantPrice(b))[0];
+      const escapedId = escapeHtml(product.id);
+
+      return `
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card menu-product-card" role="button" tabindex="0" onclick="openProductModal('${escapedId}')">
+            <div class="menu-product-info">
+              <div>
+                <h3 class="menu-product-name">${escapeHtml(product.name)}</h3>
+                <p class="menu-product-desc">${escapeHtml(product.description || '')}</p>
+                ${renderPromoPrice(lowestVariant)}
+              </div>
+            </div>
+            <div class="menu-product-media">
+              <img src="${escapeHtml(normalizeImageUrl(product.imageUrl) || 'assets/gambar/cake-hero.png')}" class="menu-product-img" alt="${escapeHtml(product.name)}">
+              <button class="btn-menu-add" type="button" onclick="event.stopPropagation(); openProductModal('${escapedId}')" ${activeVariants.length ? '' : 'disabled'}>
+                Tambah
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCustomTemplateCard(template, type) {
+      const priceLabel = Number(template.basePrice || 0) > 0
+        ? `Mulai ${formatRupiah(template.basePrice)}`
+        : 'Harga menyesuaikan request';
+      const imageUrl = normalizeImageUrl(template.imageUrl) || 'assets/gambar/cake-hero.png';
+      const description = template.notes || type.description || 'Template custom cake sesuai request pelanggan.';
+
+      return `
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card menu-product-card">
+            <div class="menu-product-info">
+              <div>
+                <h3 class="menu-product-name">${escapeHtml(template.name)}</h3>
+                <p class="menu-product-desc">${escapeHtml(description)}</p>
+                <p class="menu-product-price">${priceLabel}</p>
+              </div>
+            </div>
+            <div class="menu-product-media">
+              <img src="${escapeHtml(imageUrl)}" class="menu-product-img" alt="${escapeHtml(template.name)}">
+              <a class="btn-menu-add text-decoration-none" href="kontak.html">
+                Konsultasi
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderRegularCategory(catalog, category) {
+      const products = toArray(catalog.products)
+        .filter((product) => (
+          isActive(product) &&
+          getProductType(product) !== 'custom_cake' &&
+          productMatchesCategory(product, category)
+        ))
+        .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+      if (!products.length) {
+        return '<div class="empty-category">Produk untuk kategori ini belum tersedia.</div>';
+      }
+
+      return `<div class="row g-4">${products.map((product) => renderProductCard(product, category)).join('')}</div>`;
+    }
+
+    function renderCustomCategory(catalog) {
+      const customTypes = toArray(catalog.customCakeTypes)
+        .filter((type) => isActive(type))
+        .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
+
+      if (!customTypes.length) {
+        return '<div class="empty-category">Kategori custom cake belum tersedia.</div>';
+      }
+
+      const templates = toArray(catalog.customCakeTemplates)
+        .filter((template) => isActive(template));
+
+      return customTypes.map((type) => {
+        const typeTemplates = templates
+          .filter((template) => template.typeId === type.id)
+          .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+        return `
+          <div class="category-type-block">
+            <h2 class="category-type-title">${escapeHtml(type.name)}</h2>
+            ${type.description ? `<p class="page-text text-start mx-0 mb-3">${escapeHtml(type.description)}</p>` : ''}
+            ${
+              typeTemplates.length
+                ? `<div class="row g-4">${typeTemplates.map((template) => renderCustomTemplateCard(template, type)).join('')}</div>`
+                : '<div class="empty-category">Template untuk kategori custom ini belum tersedia.</div>'
+            }
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getActiveVariants(productId) {
+      return toArray(catalogVariants[productId] || {})
+        .filter((variant) => isActive(variant))
+        .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+    }
+
+    function updateModalPrice() {
+      const variantId = document.getElementById('modalProductVariant').value;
+      const variant = catalogVariants[selectedProductId]?.[variantId];
+      const button = document.getElementById('modalAddButton');
+
+      if (!variant) {
+        document.getElementById('modalProductPrice').textContent = 'Harga belum tersedia';
+        button.textContent = 'Variant belum tersedia';
+        button.disabled = true;
+        return;
+      }
+
+      document.getElementById('modalProductPrice').innerHTML = renderPromoPrice(variant, 'modal-product-price');
+      button.textContent = `Tambah ke keranjang - ${renderPrice(getVariantPrice(variant))}`;
+      button.disabled = false;
+    }
+
+    window.openProductModal = function openProductModal(productId) {
+      const product = catalogProducts[productId];
+      const variants = getActiveVariants(productId);
+      const variantSelect = document.getElementById('modalProductVariant');
+
+      if (!product) {
+        alert('Produk belum tersedia.');
+        return;
+      }
+
+      selectedProductId = productId;
+      document.getElementById('modalProductImage').src = normalizeImageUrl(product.imageUrl) || 'assets/gambar/cake-hero.png';
+      document.getElementById('modalProductImage').alt = product.name || '';
+      document.getElementById('modalProductName').textContent = product.name || '';
+
+      variantSelect.innerHTML = variants.length
+        ? variants.map((variant) => `
+            <option value="${escapeHtml(variant.id)}">
+              ${escapeHtml(variant.name)} - ${renderPrice(getVariantPrice(variant))}
+            </option>
+          `).join('')
+        : '<option value="">Belum ada variant</option>';
+      variantSelect.disabled = !variants.length;
+
+      updateModalPrice();
+
+      if (!productModal) {
+        productModal = new bootstrap.Modal(document.getElementById('productModal'));
+      }
+
+      productModal.show();
+    };
+
+    async function renderCategoryPage() {
+      const categoryId = new URLSearchParams(window.location.search).get('id');
+      const content = document.getElementById('categoryContent');
+
+      try {
+        const catalog = await loadCatalog();
+        const categoryData = catalog.categories[categoryId];
+        const category = categoryData ? { id: categoryId, ...categoryData } : null;
+        catalogProducts = catalog.products;
+        catalogVariants = catalog.productVariants;
+
+        if (!category || !isActive(category)) {
+          document.getElementById('categoryTitle').textContent = 'Kategori Tidak Ditemukan';
+          document.getElementById('categoryText').textContent = 'Kategori yang kamu buka belum tersedia.';
+          content.innerHTML = '<div class="empty-category">Silakan kembali ke halaman semua kategori.</div>';
+          return;
+        }
+
+        document.title = `${category.name} | Rafita's Cake & Bakery`;
+        document.getElementById('categoryTitle').textContent = category.name;
+        document.getElementById('categoryText').textContent = category.type === 'custom_cake'
+          ? 'Pilih kategori custom, lalu pilih template atau tema yang sesuai.'
+          : 'Pilih produk, size, dan harga yang cocok untuk pesananmu.';
+
+        content.innerHTML = category.type === 'custom_cake'
+          ? renderCustomCategory(catalog)
+          : renderRegularCategory(catalog, category);
+      } catch (error) {
+        console.error(error);
+        content.innerHTML = '<div class="empty-category">Produk belum bisa dimuat dari Firebase.</div>';
+      }
+    }
+
+    window.addToCartFromCategory = function addToCartFromCategory(productId, variantId) {
+      const product = catalogProducts[productId];
+      const variant = catalogVariants[productId]?.[variantId];
+
+      if (!product || !variant) {
+        alert('Produk atau variant belum tersedia.');
+        return;
+      }
+
+      const cartId = `${productId}:${variantId}`;
+      const cart = getCart();
+      const foundIndex = cart.findIndex((item) => item.id === cartId);
+
+      if (foundIndex > -1) {
+        cart[foundIndex].qty += 1;
+      } else {
+        cart.push({
+          id: cartId,
+          productId,
+          variantId,
+          name: product.name,
+          variantName: variant.name,
+          price: getVariantPrice(variant),
+          originalPrice: Number(variant.price || 0),
+          promoActive: isPromoVariant(variant),
+          image: normalizeImageUrl(product.imageUrl) || 'assets/gambar/cake-hero.png',
+          qty: 1
+        });
+      }
+
+      saveCart(cart);
+      updateCartBadge();
+      if (productModal) productModal.hide();
+    };
+
+    document.getElementById('modalProductVariant').addEventListener('change', updateModalPrice);
+    document.getElementById('modalAddButton').addEventListener('click', () => {
+      const variantId = document.getElementById('modalProductVariant').value;
+      addToCartFromCategory(selectedProductId, variantId);
+    });
+
+    renderCategoryPage();
+    updateCartBadge();
+  </script>
+</body>
+</html>

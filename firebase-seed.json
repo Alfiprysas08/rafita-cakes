@@ -1,0 +1,211 @@
+{
+  "categories": {
+    "birthday": {
+      "name": "Birthday Cake",
+      "slug": "birthday-cake",
+      "imageUrl": "assets/gambar/cake 1.png",
+      "type": "regular",
+      "sortOrder": 1,
+      "active": true
+    },
+    "wedding": {
+      "name": "Wedding Cake",
+      "slug": "wedding-cake",
+      "imageUrl": "assets/gambar/cake 3.png",
+      "type": "regular",
+      "sortOrder": 2,
+      "active": true
+    },
+    "chocolate": {
+      "name": "Chocolate Cake",
+      "slug": "chocolate-cake",
+      "imageUrl": "assets/gambar/cake 5.png",
+      "type": "regular",
+      "sortOrder": 3,
+      "active": true
+    },
+    "fruit": {
+      "name": "Fruit Cake",
+      "slug": "fruit-cake",
+      "imageUrl": "assets/gambar/cake 4.png",
+      "type": "regular",
+      "sortOrder": 4,
+      "active": true
+    },
+    "kids": {
+      "name": "Kids Cake",
+      "slug": "kids-cake",
+      "imageUrl": "assets/gambar/cake 9.png",
+      "type": "regular",
+      "sortOrder": 5,
+      "active": true
+    },
+    "dessert": {
+      "name": "Dessert Box",
+      "slug": "dessert-box",
+      "imageUrl": "assets/gambar/cake 6.png",
+      "type": "regular",
+      "sortOrder": 6,
+      "active": true
+    },
+    "custom": {
+      "name": "Custom Cake",
+      "slug": "custom-cake",
+      "imageUrl": "assets/gambar/cake 8.png",
+      "type": "custom_cake",
+      "sortOrder": 7,
+      "active": true
+    }
+  },
+  "products": {
+    "ocean_baby": {
+      "categoryId": "kids",
+      "name": "Ocean Baby Cake",
+      "slug": "ocean-baby-cake",
+      "description": "Birthday cake pastel bertema bawah laut dengan dekorasi lucu dan warna ceria.",
+      "imageUrl": "assets/gambar/cake 1.png",
+      "type": "regular",
+      "sortOrder": 1,
+      "active": true
+    },
+    "choco_royal": {
+      "categoryId": "chocolate",
+      "name": "Choco Royal Cake",
+      "slug": "choco-royal-cake",
+      "description": "Cake cokelat premium dengan rasa kaya, tekstur moist, dan tampilan elegan.",
+      "imageUrl": "assets/gambar/cake 5.png",
+      "type": "regular",
+      "sortOrder": 2,
+      "active": true
+    },
+    "strawberry_blossom": {
+      "categoryId": "fruit",
+      "name": "Strawberry Blossom Cake",
+      "slug": "strawberry-blossom-cake",
+      "description": "Cake lembut dengan sentuhan strawberry segar dan dekorasi manis bernuansa pink.",
+      "imageUrl": "assets/gambar/cake 4.png",
+      "type": "regular",
+      "sortOrder": 3,
+      "active": true
+    }
+  },
+  "product_variants": {
+    "ocean_baby": {
+      "size_16": {
+        "name": "Diameter 16 cm",
+        "price": 185000,
+        "sortOrder": 1,
+        "active": true
+      },
+      "size_20": {
+        "name": "Diameter 20 cm",
+        "price": 235000,
+        "sortOrder": 2,
+        "active": true
+      },
+      "size_24": {
+        "name": "Diameter 24 cm",
+        "price": 310000,
+        "sortOrder": 3,
+        "active": true
+      }
+    },
+    "choco_royal": {
+      "size_16": {
+        "name": "Diameter 16 cm",
+        "price": 225000,
+        "sortOrder": 1,
+        "active": true
+      },
+      "size_20": {
+        "name": "Diameter 20 cm",
+        "price": 285000,
+        "sortOrder": 2,
+        "active": true
+      },
+      "size_24": {
+        "name": "Diameter 24 cm",
+        "price": 360000,
+        "sortOrder": 3,
+        "active": true
+      }
+    },
+    "strawberry_blossom": {
+      "size_16": {
+        "name": "Diameter 16 cm",
+        "price": 195000,
+        "promoActive": true,
+        "promoPrice": 175000,
+        "sortOrder": 1,
+        "active": true
+      },
+      "size_20": {
+        "name": "Diameter 20 cm",
+        "price": 250000,
+        "sortOrder": 2,
+        "active": true
+      },
+      "size_24": {
+        "name": "Diameter 24 cm",
+        "price": 325000,
+        "sortOrder": 3,
+        "active": true
+      }
+    }
+  },
+  "custom_cake_types": {
+    "frozen": {
+      "name": "Frozen",
+      "slug": "frozen",
+      "description": "Tema karakter Frozen untuk ulang tahun anak.",
+      "active": true
+    },
+    "birthday": {
+      "name": "Birthday",
+      "slug": "birthday",
+      "description": "Custom cake ulang tahun dengan nama dan angka usia.",
+      "active": true
+    },
+    "wedding": {
+      "name": "Wedding",
+      "slug": "wedding",
+      "description": "Custom cake bertingkat untuk acara pernikahan.",
+      "active": true
+    },
+    "graduation": {
+      "name": "Graduation",
+      "slug": "graduation",
+      "description": "Tema wisuda dengan topper toga dan ucapan.",
+      "active": true
+    },
+    "anime": {
+      "name": "Anime",
+      "slug": "anime",
+      "description": "Tema karakter anime sesuai referensi pelanggan.",
+      "active": true
+    }
+  },
+  "custom_cake_templates": {
+    "frozen_castle": {
+      "typeId": "frozen",
+      "name": "Frozen Castle",
+      "imageUrl": "assets/gambar/cake 8.png",
+      "basePrice": 275000,
+      "notes": "Bisa ganti nama dan umur.",
+      "sortOrder": 1,
+      "active": true
+    },
+    "wedding_elegant": {
+      "typeId": "wedding",
+      "name": "Elegant Wedding Tier",
+      "imageUrl": "assets/gambar/cake 3.png",
+      "basePrice": 650000,
+      "notes": "Harga mengikuti jumlah tier dan detail bunga.",
+      "sortOrder": 2,
+      "active": true
+    }
+  },
+  "admins": {
+    "4tFdrfGtDrMViLCuT61oksw1iap1": true
+  }
+}

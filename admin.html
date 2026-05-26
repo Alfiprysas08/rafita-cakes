@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin CRUD | Rafita's Cake & Bakery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --brown: #4b221b;
+      --brown-dark: #3b1713;
+      --pink: #e47d7d;
+      --pink-dark: #d96d73;
+      --soft: #fff8f7;
+      --text: #5f4742;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(255,248,247,0.94), rgba(255,248,247,0.96)),
+        url('assets/gambar/background-home.png');
+      background-size: cover;
+      background-position: center;
+      color: var(--text);
+    }
+
+    .admin-shell {
+      min-height: 100vh;
+      padding: 34px 0;
+    }
+
+    .brand-logo {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .admin-topbar,
+    .admin-panel,
+    .login-panel {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(228,125,125,0.15);
+      border-radius: 22px;
+      box-shadow: 0 18px 35px rgba(0,0,0,0.06);
+      backdrop-filter: blur(10px);
+    }
+
+    .admin-topbar {
+      padding: 18px 22px;
+      margin-bottom: 22px;
+    }
+
+    .login-panel {
+      max-width: 460px;
+      margin: 56px auto;
+      padding: 28px;
+    }
+
+    .admin-panel {
+      padding: 22px;
+      height: 100%;
+    }
+
+    .panel-title {
+      color: var(--brown);
+      font-weight: 800;
+      font-size: 1.18rem;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 13px;
+      border-color: rgba(75,34,27,0.15);
+      padding: 11px 13px;
+      color: var(--text);
+    }
+
+    .btn-pink {
+      border: none;
+      border-radius: 13px;
+      padding: 11px 16px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-pink:hover {
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .btn-soft {
+      border: none;
+      border-radius: 13px;
+      padding: 10px 14px;
+      background: rgba(228,125,125,0.14);
+      color: var(--pink-dark);
+      font-weight: 700;
+    }
+
+    .data-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      max-height: 360px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .data-item {
+      border: 1px solid rgba(228,125,125,0.16);
+      border-radius: 16px;
+      padding: 13px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .data-title {
+      color: var(--brown);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .data-meta {
+      font-size: 0.86rem;
+      color: #76605a;
+      margin-bottom: 10px;
+    }
+
+    .tab-pane {
+      padding-top: 18px;
+    }
+
+    .nav-pills .nav-link {
+      color: var(--brown);
+      font-weight: 700;
+      border-radius: 999px;
+    }
+
+    .nav-pills .nav-link.active {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <main class="admin-shell">
+    <div class="container">
+      <section id="loginView" class="login-panel">
+        <div class="text-center mb-4">
+          <img src="assets/gambar/Logo.png" alt="Rafita's Cake & Bakery" class="brand-logo mb-3" />
+          <h1 class="panel-title mb-2">Login Admin</h1>
+          <p class="mb-0">Masuk untuk mengelola data produk Rafita Cakes.</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="mb-3">
+            <label class="form-label" for="loginEmail">Email</label>
+            <input class="form-control" id="loginEmail" type="email" autocomplete="email" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="loginPassword">Password</label>
+            <input class="form-control" id="loginPassword" type="password" autocomplete="current-password" required />
+          </div>
+          <button class="btn-pink w-100" type="submit">
+            <i class="bi bi-box-arrow-in-right"></i>
+            Masuk
+          </button>
+          <p id="loginMessage" class="small mt-3 mb-0 text-danger"></p>
+        </form>
+      </section>
+
+      <section id="adminView" class="hidden">
+        <div class="admin-topbar d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <img src="assets/gambar/Logo.png" alt="Rafita's Cake & Bakery" class="brand-logo" />
+            <div>
+              <h1 class="panel-title mb-1">Admin Rafita Cakes</h1>
+              <p class="mb-0 small">Kelola data Realtime Database.</p>
+            </div>
+          </div>
+          <div class="d-flex gap-2">
+            <a class="btn-soft text-decoration-none" href="produk.html">
+              <i class="bi bi-shop"></i>
+            </a>
+            <button class="btn-soft" id="seedButton" type="button">
+              <i class="bi bi-database-add"></i>
+              Seed Dummy
+            </button>
+            <button class="btn-soft" id="logoutButton" type="button">
+              <i class="bi bi-box-arrow-right"></i>
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <ul class="nav nav-pills" id="adminTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#categoryTab" type="button">Kategori</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#productTab" type="button">Produk</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#variantTab" type="button">Variant</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#customTab" type="button">Custom Cake</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="categoryTab">
+            <div class="row g-4">
+              <div class="col-lg-5">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Form Kategori</h2>
+                  <form id="categoryForm">
+                    <input type="hidden" id="categoryId" />
+                    <div class="mb-3">
+                      <label class="form-label" for="categoryName">Nama</label>
+                      <input class="form-control" id="categoryName" required />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="categorySlug">Slug</label>
+                      <input class="form-control" id="categorySlug" placeholder="otomatis jika kosong" />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="categoryImage">URL Gambar Kategori</label>
+                      <input class="form-control" id="categoryImage" placeholder="assets/gambar/cake 1.png atau link Google Drive" />
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="categoryType">Tipe</label>
+                        <select class="form-select" id="categoryType">
+                          <option value="regular">Regular</option>
+                          <option value="custom_cake">Custom Cake</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="categoryOrder">Urutan</label>
+                        <input class="form-control" id="categoryOrder" type="number" value="1" />
+                      </div>
+                    </div>
+                    <div class="form-check mt-3">
+                      <input class="form-check-input" id="categoryActive" type="checkbox" checked />
+                      <label class="form-check-label" for="categoryActive">Aktif</label>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                      <button class="btn-pink" type="submit"><i class="bi bi-save"></i>Simpan</button>
+                      <button class="btn-soft" type="button" data-reset="category">Reset</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Data Kategori</h2>
+                  <div class="data-list" id="categoryList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="productTab">
+            <div class="row g-4">
+              <div class="col-lg-5">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Form Produk</h2>
+                  <form id="productForm">
+                    <input type="hidden" id="productId" />
+                    <div class="mb-3">
+                      <label class="form-label" for="productName">Nama</label>
+                      <input class="form-control" id="productName" required />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="productCategory">Kategori</label>
+                      <select class="form-select" id="productCategory" required></select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="productDescription">Deskripsi</label>
+                      <textarea class="form-control" id="productDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="productImage">URL Gambar</label>
+                      <input class="form-control" id="productImage" placeholder="assets/gambar/cake 1.png atau link Google Drive" />
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="productOrder">Urutan</label>
+                        <input class="form-control" id="productOrder" type="number" value="1" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="productType">Tipe</label>
+                        <select class="form-select" id="productType">
+                          <option value="regular">Regular</option>
+                          <option value="custom_cake">Custom Cake</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-check mt-3">
+                      <input class="form-check-input" id="productActive" type="checkbox" checked />
+                      <label class="form-check-label" for="productActive">Aktif</label>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                      <button class="btn-pink" type="submit"><i class="bi bi-save"></i>Simpan</button>
+                      <button class="btn-soft" type="button" data-reset="product">Reset</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Data Produk</h2>
+                  <div class="data-list" id="productList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="variantTab">
+            <div class="row g-4">
+              <div class="col-lg-5">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Form Variant / Size / Harga</h2>
+                  <form id="variantForm">
+                    <input type="hidden" id="variantId" />
+                    <div class="mb-3">
+                      <label class="form-label" for="variantProduct">Produk</label>
+                      <select class="form-select" id="variantProduct" required></select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="variantName">Nama Size / Variant</label>
+                      <input class="form-control" id="variantName" placeholder="Diameter 16 cm" required />
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="variantPrice">Harga</label>
+                        <input class="form-control" id="variantPrice" type="number" min="0" required />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="variantOrder">Urutan</label>
+                        <input class="form-control" id="variantOrder" type="number" value="1" />
+                      </div>
+                    </div>
+                    <div class="row g-3 mt-1">
+                      <div class="col-md-6">
+                        <label class="form-label" for="variantPromoPrice">Harga Promo</label>
+                        <input class="form-control" id="variantPromoPrice" type="number" min="0" placeholder="Opsional" />
+                      </div>
+                      <div class="col-md-6 d-flex align-items-end">
+                        <div class="form-check mb-2">
+                          <input class="form-check-input" id="variantPromoActive" type="checkbox" />
+                          <label class="form-check-label" for="variantPromoActive">Aktifkan Promo</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-check mt-3">
+                      <input class="form-check-input" id="variantActive" type="checkbox" checked />
+                      <label class="form-check-label" for="variantActive">Aktif</label>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                      <button class="btn-pink" type="submit"><i class="bi bi-save"></i>Simpan</button>
+                      <button class="btn-soft" type="button" data-reset="variant">Reset</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Data Variant</h2>
+                  <div class="data-list" id="variantList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="customTab">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Jenis Custom Cake</h2>
+                  <form id="customTypeForm">
+                    <input type="hidden" id="customTypeId" />
+                    <div class="mb-3">
+                      <label class="form-label" for="customTypeName">Nama Jenis</label>
+                      <input class="form-control" id="customTypeName" placeholder="Frozen, Wedding, Anime" required />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="customTypeDescription">Deskripsi</label>
+                      <textarea class="form-control" id="customTypeDescription" rows="2"></textarea>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="customTypeActive" type="checkbox" checked />
+                      <label class="form-check-label" for="customTypeActive">Aktif</label>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                      <button class="btn-pink" type="submit"><i class="bi bi-save"></i>Simpan Jenis</button>
+                      <button class="btn-soft" type="button" data-reset="customType">Reset</button>
+                    </div>
+                  </form>
+                  <div class="data-list" id="customTypeList"></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="admin-panel">
+                  <h2 class="panel-title">Template Custom Cake</h2>
+                  <form id="customTemplateForm">
+                    <input type="hidden" id="customTemplateId" />
+                    <div class="mb-3">
+                      <label class="form-label" for="customTemplateType">Jenis</label>
+                      <select class="form-select" id="customTemplateType" required></select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="customTemplateName">Nama Template</label>
+                      <input class="form-control" id="customTemplateName" required />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="customTemplateImage">URL Gambar</label>
+                      <input class="form-control" id="customTemplateImage" placeholder="assets/gambar/cake 1.png atau link Google Drive" />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label" for="customTemplateNotes">Catatan</label>
+                      <textarea class="form-control" id="customTemplateNotes" rows="2"></textarea>
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="customTemplateBasePrice">Harga Mulai</label>
+                        <input class="form-control" id="customTemplateBasePrice" type="number" min="0" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="customTemplateOrder">Urutan</label>
+                        <input class="form-control" id="customTemplateOrder" type="number" value="1" />
+                      </div>
+                    </div>
+                    <div class="form-check mt-3">
+                      <input class="form-check-input" id="customTemplateActive" type="checkbox" checked />
+                      <label class="form-check-label" for="customTemplateActive">Aktif</label>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                      <button class="btn-pink" type="submit"><i class="bi bi-save"></i>Simpan Template</button>
+                      <button class="btn-soft" type="button" data-reset="customTemplate">Reset</button>
+                    </div>
+                  </form>
+                  <div class="data-list" id="customTemplateList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { auth, db } from './assets/js/firebase-config.js';
+    import { formatRupiah, normalizeImageUrl, slugify, toArray } from './assets/js/store.js';
+    import {
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js';
+    import {
+      child,
+      get,
+      onValue,
+      push,
+      ref,
+      remove,
+      set,
+      update
+    } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js';
+
+    const state = {
+      categories: {},
+      products: {},
+      productVariants: {},
+      customCakeTypes: {},
+      customCakeTemplates: {}
+    };
+
+    const adminEmails = ['rafitacakes@gmail.com'];
+
+    const sampleData = {
+      categories: {
+        birthday: { name: 'Birthday Cake', slug: 'birthday-cake', imageUrl: 'assets/gambar/cake 1.png', type: 'regular', sortOrder: 1, active: true },
+        wedding: { name: 'Wedding Cake', slug: 'wedding-cake', imageUrl: 'assets/gambar/cake 3.png', type: 'regular', sortOrder: 2, active: true },
+        chocolate: { name: 'Chocolate Cake', slug: 'chocolate-cake', imageUrl: 'assets/gambar/cake 5.png', type: 'regular', sortOrder: 3, active: true },
+        fruit: { name: 'Fruit Cake', slug: 'fruit-cake', imageUrl: 'assets/gambar/cake 4.png', type: 'regular', sortOrder: 4, active: true },
+        kids: { name: 'Kids Cake', slug: 'kids-cake', imageUrl: 'assets/gambar/cake 9.png', type: 'regular', sortOrder: 5, active: true },
+        dessert: { name: 'Dessert Box', slug: 'dessert-box', imageUrl: 'assets/gambar/cake 6.png', type: 'regular', sortOrder: 6, active: true },
+        custom: { name: 'Custom Cake', slug: 'custom-cake', imageUrl: 'assets/gambar/cake 8.png', type: 'custom_cake', sortOrder: 7, active: true }
+      },
+      products: {
+        ocean_baby: {
+          categoryId: 'kids',
+          name: 'Ocean Baby Cake',
+          slug: 'ocean-baby-cake',
+          description: 'Birthday cake pastel bertema bawah laut dengan dekorasi lucu dan warna ceria.',
+          imageUrl: 'assets/gambar/cake 1.png',
+          type: 'regular',
+          sortOrder: 1,
+          active: true
+        },
+        choco_royal: {
+          categoryId: 'chocolate',
+          name: 'Choco Royal Cake',
+          slug: 'choco-royal-cake',
+          description: 'Cake cokelat premium dengan rasa kaya, tekstur moist, dan tampilan elegan.',
+          imageUrl: 'assets/gambar/cake 5.png',
+          type: 'regular',
+          sortOrder: 2,
+          active: true
+        },
+        strawberry_blossom: {
+          categoryId: 'fruit',
+          name: 'Strawberry Blossom Cake',
+          slug: 'strawberry-blossom-cake',
+          description: 'Cake lembut dengan sentuhan strawberry segar dan dekorasi manis bernuansa pink.',
+          imageUrl: 'assets/gambar/cake 4.png',
+          type: 'regular',
+          sortOrder: 3,
+          active: true
+        }
+      },
+      product_variants: {
+        ocean_baby: {
+          size_16: { name: 'Diameter 16 cm', price: 185000, sortOrder: 1, active: true },
+          size_20: { name: 'Diameter 20 cm', price: 235000, sortOrder: 2, active: true },
+          size_24: { name: 'Diameter 24 cm', price: 310000, sortOrder: 3, active: true }
+        },
+        choco_royal: {
+          size_16: { name: 'Diameter 16 cm', price: 225000, sortOrder: 1, active: true },
+          size_20: { name: 'Diameter 20 cm', price: 285000, sortOrder: 2, active: true },
+          size_24: { name: 'Diameter 24 cm', price: 360000, sortOrder: 3, active: true }
+        },
+        strawberry_blossom: {
+          size_16: { name: 'Diameter 16 cm', price: 195000, promoActive: true, promoPrice: 175000, sortOrder: 1, active: true },
+          size_20: { name: 'Diameter 20 cm', price: 250000, sortOrder: 2, active: true },
+          size_24: { name: 'Diameter 24 cm', price: 325000, sortOrder: 3, active: true }
+        }
+      },
+      custom_cake_types: {
+        frozen: { name: 'Frozen', slug: 'frozen', description: 'Tema karakter Frozen untuk ulang tahun anak.', active: true },
+        birthday: { name: 'Birthday', slug: 'birthday', description: 'Custom cake ulang tahun dengan nama dan angka usia.', active: true },
+        wedding: { name: 'Wedding', slug: 'wedding', description: 'Custom cake bertingkat untuk acara pernikahan.', active: true },
+        graduation: { name: 'Graduation', slug: 'graduation', description: 'Tema wisuda dengan topper toga dan ucapan.', active: true },
+        anime: { name: 'Anime', slug: 'anime', description: 'Tema karakter anime sesuai referensi pelanggan.', active: true }
+      },
+      custom_cake_templates: {
+        frozen_castle: {
+          typeId: 'frozen',
+          name: 'Frozen Castle',
+          imageUrl: 'assets/gambar/cake 8.png',
+          basePrice: 275000,
+          notes: 'Bisa ganti nama dan umur.',
+          sortOrder: 1,
+          active: true
+        },
+        wedding_elegant: {
+          typeId: 'wedding',
+          name: 'Elegant Wedding Tier',
+          imageUrl: 'assets/gambar/cake 3.png',
+          basePrice: 650000,
+          notes: 'Harga mengikuti jumlah tier dan detail bunga.',
+          sortOrder: 2,
+          active: true
+        }
+      }
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function showMessage(id, message, isError = false) {
+      const element = $(id);
+      if (!element) return;
+      element.textContent = message;
+      element.classList.toggle('text-danger', isError);
+      element.classList.toggle('text-success', !isError);
+    }
+
+    function getFormValue(id) {
+      return $(id).value.trim();
+    }
+
+    function getChecked(id) {
+      return $(id).checked;
+    }
+
+    function getNumber(id) {
+      return Number($(id).value || 0);
+    }
+
+    async function saveAdminData(action, resetName, successMessage) {
+      try {
+        await action();
+        resetForm(resetName);
+        alert(successMessage);
+      } catch (error) {
+        console.error(error);
+        alert(`Data gagal disimpan: ${error.message}`);
+      }
+    }
+
+    function fillSelect(id, items, labelMap, placeholder = 'Pilih data') {
+      const select = $(id);
+      select.innerHTML = `<option value="">${placeholder}</option>`;
+      items.forEach((item) => {
+        select.innerHTML += `<option value="${item.id}">${labelMap(item)}</option>`;
+      });
+    }
+
+    function resetForm(name) {
+      const forms = {
+        category: 'categoryForm',
+        product: 'productForm',
+        variant: 'variantForm',
+        customType: 'customTypeForm',
+        customTemplate: 'customTemplateForm'
+      };
+      const form = $(forms[name]);
+      form.reset();
+      form.querySelector('input[type="hidden"]').value = '';
+      form.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+        input.checked = true;
+      });
+      const promoCheckbox = form.querySelector('#variantPromoActive');
+      if (promoCheckbox) promoCheckbox.checked = false;
+    }
+
+    function renderList(id, html) {
+      $(id).innerHTML = html || '<p class="small mb-0">Belum ada data.</p>';
+    }
+
+    async function deleteAdminData(deletePath) {
+      if (deletePath.startsWith('products/')) {
+        const productId = deletePath.split('/')[1];
+        await update(ref(db), {
+          [`products/${productId}`]: null,
+          [`product_variants/${productId}`]: null
+        });
+        return;
+      }
+
+      await remove(ref(db, deletePath));
+    }
+
+    function renderCategories() {
+      const categories = toArray(state.categories).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+      renderList('categoryList', categories.map((item) => `
+        <div class="data-item">
+          <div class="data-title">${item.name}</div>
+          <div class="data-meta">${item.type} | ${item.slug} | ${item.active ? 'Aktif' : 'Nonaktif'}</div>
+          <button class="btn-soft me-2" data-edit-category="${item.id}"><i class="bi bi-pencil"></i></button>
+          <button class="btn-soft" data-delete-path="categories/${item.id}"><i class="bi bi-trash"></i></button>
+        </div>
+      `).join(''));
+
+      const regularCategories = categories.filter((item) => item.type === 'regular' && item.active !== false);
+      fillSelect('productCategory', regularCategories, (item) => item.name, 'Pilih kategori produk');
+    }
+
+    function renderProducts() {
+      const products = toArray(state.products).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+      renderList('productList', products.map((item) => `
+        <div class="data-item">
+          <div class="data-title">${item.name}</div>
+          <div class="data-meta">${state.categories[item.categoryId]?.name || '-'} | ${item.active ? 'Aktif' : 'Nonaktif'}</div>
+          <button class="btn-soft me-2" data-edit-product="${item.id}"><i class="bi bi-pencil"></i></button>
+          <button class="btn-soft" data-delete-path="products/${item.id}"><i class="bi bi-trash"></i></button>
+        </div>
+      `).join(''));
+
+      const regularProducts = products.filter((item) => item.type !== 'custom_cake');
+      fillSelect('variantProduct', regularProducts, (item) => item.name, 'Pilih produk');
+    }
+
+    function renderVariants() {
+      const variants = [];
+      Object.entries(state.productVariants).forEach(([productId, productVariants]) => {
+        Object.entries(productVariants || {}).forEach(([variantId, variant]) => {
+          variants.push({ id: variantId, productId, ...variant });
+        });
+      });
+
+      renderList('variantList', variants.map((item) => `
+        <div class="data-item">
+          <div class="data-title">${state.products[item.productId]?.name || item.productId} - ${item.name}</div>
+          <div class="data-meta">
+            ${formatRupiah(item.price)}
+            ${item.promoActive && Number(item.promoPrice || 0) > 0 ? ` -> Promo ${formatRupiah(item.promoPrice)}` : ''}
+            | ${item.active ? 'Aktif' : 'Nonaktif'}
+          </div>
+          <button class="btn-soft me-2" data-edit-variant="${item.productId}/${item.id}"><i class="bi bi-pencil"></i></button>
+          <button class="btn-soft" data-delete-path="product_variants/${item.productId}/${item.id}"><i class="bi bi-trash"></i></button>
+        </div>
+      `).join(''));
+    }
+
+    function renderCustomTypes() {
+      const types = toArray(state.customCakeTypes).sort((a, b) => a.name.localeCompare(b.name));
+      renderList('customTypeList', types.map((item) => `
+        <div class="data-item">
+          <div class="data-title">${item.name}</div>
+          <div class="data-meta">${item.slug} | ${item.active ? 'Aktif' : 'Nonaktif'}</div>
+          <button class="btn-soft me-2" data-edit-custom-type="${item.id}"><i class="bi bi-pencil"></i></button>
+          <button class="btn-soft" data-delete-path="custom_cake_types/${item.id}"><i class="bi bi-trash"></i></button>
+        </div>
+      `).join(''));
+
+      fillSelect('customTemplateType', types, (item) => item.name, 'Pilih jenis custom cake');
+    }
+
+    function renderCustomTemplates() {
+      const templates = toArray(state.customCakeTemplates).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+      renderList('customTemplateList', templates.map((item) => `
+        <div class="data-item">
+          <div class="data-title">${item.name}</div>
+          <div class="data-meta">${state.customCakeTypes[item.typeId]?.name || '-'} | Mulai ${formatRupiah(item.basePrice)}</div>
+          <button class="btn-soft me-2" data-edit-custom-template="${item.id}"><i class="bi bi-pencil"></i></button>
+          <button class="btn-soft" data-delete-path="custom_cake_templates/${item.id}"><i class="bi bi-trash"></i></button>
+        </div>
+      `).join(''));
+    }
+
+    function renderAll() {
+      renderCategories();
+      renderProducts();
+      renderVariants();
+      renderCustomTypes();
+      renderCustomTemplates();
+    }
+
+    function listenData() {
+      onValue(ref(db), (snapshot) => {
+        const data = snapshot.val() || {};
+        state.categories = data.categories || {};
+        state.products = data.products || {};
+        state.productVariants = data.product_variants || {};
+        state.customCakeTypes = data.custom_cake_types || {};
+        state.customCakeTemplates = data.custom_cake_templates || {};
+        renderAll();
+      });
+    }
+
+    async function isAdmin(user) {
+      const snapshot = await get(child(ref(db), `admins/${user.uid}`));
+      return (snapshot.exists() && snapshot.val() === true) || adminEmails.includes(user.email);
+    }
+
+    $('loginForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      showMessage('loginMessage', 'Memproses login...');
+
+      try {
+        await signInWithEmailAndPassword(auth, getFormValue('loginEmail'), getFormValue('loginPassword'));
+      } catch (error) {
+        showMessage('loginMessage', 'Login gagal. Periksa email dan password.', true);
+      }
+    });
+
+    $('logoutButton').addEventListener('click', () => signOut(auth));
+    $('seedButton').addEventListener('click', async () => {
+      if (!confirm('Isi database dengan contoh data dummy? Data pada node yang sama akan ditimpa.')) return;
+      await update(ref(db), sampleData);
+      alert('Data dummy berhasil disimpan.');
+    });
+
+    document.querySelectorAll('[data-reset]').forEach((button) => {
+      button.addEventListener('click', () => resetForm(button.dataset.reset));
+    });
+
+    $('categoryForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const id = getFormValue('categoryId') || slugify(getFormValue('categoryName'));
+      await saveAdminData(() => set(ref(db, `categories/${id}`), {
+          name: getFormValue('categoryName'),
+          slug: getFormValue('categorySlug') || slugify(getFormValue('categoryName')),
+          imageUrl: normalizeImageUrl(getFormValue('categoryImage')),
+          type: getFormValue('categoryType'),
+          sortOrder: getNumber('categoryOrder'),
+          active: getChecked('categoryActive')
+        }),
+        'category',
+        'Kategori berhasil disimpan.'
+      );
+    });
+
+    $('productForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const id = getFormValue('productId') || slugify(getFormValue('productName'));
+      await saveAdminData(() => set(ref(db, `products/${id}`), {
+          categoryId: getFormValue('productCategory'),
+          name: getFormValue('productName'),
+          slug: slugify(getFormValue('productName')),
+          description: getFormValue('productDescription'),
+          imageUrl: normalizeImageUrl(getFormValue('productImage')),
+          type: getFormValue('productType'),
+          sortOrder: getNumber('productOrder'),
+          active: getChecked('productActive')
+        }),
+        'product',
+        'Produk berhasil disimpan.'
+      );
+    });
+
+    $('variantForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const productId = getFormValue('variantProduct');
+      const id = getFormValue('variantId') || slugify(getFormValue('variantName'));
+      await saveAdminData(() => set(ref(db, `product_variants/${productId}/${id}`), {
+          name: getFormValue('variantName'),
+          price: getNumber('variantPrice'),
+          promoActive: getChecked('variantPromoActive'),
+          promoPrice: getNumber('variantPromoPrice'),
+          sortOrder: getNumber('variantOrder'),
+          active: getChecked('variantActive')
+        }),
+        'variant',
+        'Variant berhasil disimpan.'
+      );
+    });
+
+    $('customTypeForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const id = getFormValue('customTypeId') || slugify(getFormValue('customTypeName'));
+      await saveAdminData(() => set(ref(db, `custom_cake_types/${id}`), {
+          name: getFormValue('customTypeName'),
+          slug: slugify(getFormValue('customTypeName')),
+          description: getFormValue('customTypeDescription'),
+          active: getChecked('customTypeActive')
+        }),
+        'customType',
+        'Kategori custom berhasil disimpan.'
+      );
+    });
+
+    $('customTemplateForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const id = getFormValue('customTemplateId') || push(ref(db, 'custom_cake_templates')).key;
+      await saveAdminData(() => set(ref(db, `custom_cake_templates/${id}`), {
+          typeId: getFormValue('customTemplateType'),
+          name: getFormValue('customTemplateName'),
+          imageUrl: normalizeImageUrl(getFormValue('customTemplateImage')),
+          basePrice: getNumber('customTemplateBasePrice'),
+          notes: getFormValue('customTemplateNotes'),
+          sortOrder: getNumber('customTemplateOrder'),
+          active: getChecked('customTemplateActive')
+        }),
+        'customTemplate',
+        'Template custom berhasil disimpan.'
+      );
+    });
+
+    document.addEventListener('click', async (event) => {
+      const deletePath = event.target.closest('[data-delete-path]')?.dataset.deletePath;
+      if (deletePath) {
+        if (confirm('Hapus data ini?')) await deleteAdminData(deletePath);
+        return;
+      }
+
+      const categoryId = event.target.closest('[data-edit-category]')?.dataset.editCategory;
+      if (categoryId) {
+        const item = state.categories[categoryId];
+        $('categoryId').value = categoryId;
+        $('categoryName').value = item.name || '';
+        $('categorySlug').value = item.slug || '';
+        $('categoryImage').value = item.imageUrl || '';
+        $('categoryType').value = item.type || 'regular';
+        $('categoryOrder').value = item.sortOrder || 1;
+        $('categoryActive').checked = item.active !== false;
+      }
+
+      const productId = event.target.closest('[data-edit-product]')?.dataset.editProduct;
+      if (productId) {
+        const item = state.products[productId];
+        $('productId').value = productId;
+        $('productName').value = item.name || '';
+        $('productCategory').value = item.categoryId || '';
+        $('productDescription').value = item.description || '';
+        $('productImage').value = item.imageUrl || '';
+        $('productOrder').value = item.sortOrder || 1;
+        $('productType').value = item.type || 'regular';
+        $('productActive').checked = item.active !== false;
+      }
+
+      const variantPath = event.target.closest('[data-edit-variant]')?.dataset.editVariant;
+      if (variantPath) {
+        const [productIdValue, variantIdValue] = variantPath.split('/');
+        const item = state.productVariants[productIdValue][variantIdValue];
+        $('variantProduct').value = productIdValue;
+        $('variantId').value = variantIdValue;
+        $('variantName').value = item.name || '';
+        $('variantPrice').value = item.price || 0;
+        $('variantPromoPrice').value = item.promoPrice || '';
+        $('variantPromoActive').checked = item.promoActive === true;
+        $('variantOrder').value = item.sortOrder || 1;
+        $('variantActive').checked = item.active !== false;
+      }
+
+      const customTypeId = event.target.closest('[data-edit-custom-type]')?.dataset.editCustomType;
+      if (customTypeId) {
+        const item = state.customCakeTypes[customTypeId];
+        $('customTypeId').value = customTypeId;
+        $('customTypeName').value = item.name || '';
+        $('customTypeDescription').value = item.description || '';
+        $('customTypeActive').checked = item.active !== false;
+      }
+
+      const customTemplateId = event.target.closest('[data-edit-custom-template]')?.dataset.editCustomTemplate;
+      if (customTemplateId) {
+        const item = state.customCakeTemplates[customTemplateId];
+        $('customTemplateId').value = customTemplateId;
+        $('customTemplateType').value = item.typeId || '';
+        $('customTemplateName').value = item.name || '';
+        $('customTemplateImage').value = item.imageUrl || '';
+        $('customTemplateBasePrice').value = item.basePrice || 0;
+        $('customTemplateNotes').value = item.notes || '';
+        $('customTemplateOrder').value = item.sortOrder || 1;
+        $('customTemplateActive').checked = item.active !== false;
+      }
+    });
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        $('loginView').classList.remove('hidden');
+        $('adminView').classList.add('hidden');
+        return;
+      }
+
+      if (!(await isAdmin(user))) {
+        const deniedUid = user.uid;
+        await signOut(auth);
+        showMessage('loginMessage', `Akun ini belum terdaftar sebagai admin. UID: ${deniedUid}`, true);
+        return;
+      }
+
+      $('loginView').classList.add('hidden');
+      $('adminView').classList.remove('hidden');
+      listenData();
+    });
+  </script>
+</body>
+</html>

@@ -181,6 +181,218 @@
       font-size: 1.7rem;
     }
 
+    .category-section {
+      margin-bottom: 58px;
+    }
+
+    .category-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(228,125,125,0.2);
+      padding-bottom: 14px;
+    }
+
+    .category-title {
+      color: var(--brown);
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .category-subtitle {
+      color: #7a625c;
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+
+    .category-count {
+      background: rgba(228,125,125,0.14);
+      color: var(--pink-dark);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .custom-type-block {
+      margin-bottom: 34px;
+    }
+
+    .custom-type-title {
+      color: var(--brown);
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .empty-category {
+      border: 1px dashed rgba(228,125,125,0.35);
+      border-radius: 20px;
+      padding: 22px;
+      color: #7a625c;
+      background: rgba(255,255,255,0.55);
+      margin-bottom: 0;
+    }
+
+    .catalog-table-wrap {
+      overflow: hidden;
+      border: 1px solid rgba(228,125,125,0.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 20px 45px rgba(75,34,27,0.07);
+    }
+
+    .catalog-table {
+      width: 100%;
+      margin: 0;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .catalog-table thead {
+      background: linear-gradient(180deg, #fff8f6, #fff0ed);
+    }
+
+    .catalog-table th {
+      padding: 17px 22px;
+      color: var(--brown);
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(75,34,27,0.08);
+    }
+
+    .catalog-table td {
+      padding: 15px 22px;
+      color: #4f3d38;
+      font-size: 0.9rem;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(75,34,27,0.08);
+    }
+
+    .catalog-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .catalog-table tbody tr {
+      transition: 0.2s ease;
+    }
+
+    .catalog-table tbody tr:hover {
+      background: rgba(255,248,247,0.72);
+    }
+
+    .catalog-no {
+      width: 72px;
+      text-align: center;
+      color: var(--brown);
+      font-weight: 600;
+    }
+
+    .catalog-category-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .catalog-thumb {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 10px 22px rgba(75,34,27,0.13);
+    }
+
+    .catalog-category-name {
+      color: var(--brown);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.06rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .catalog-desc {
+      max-width: 360px;
+      color: #4f3d38;
+      line-height: 1.55;
+    }
+
+    .catalog-count {
+      display: block;
+      color: var(--brown);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .catalog-count small {
+      display: block;
+      color: #8a746e;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .category-card {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.05);
+      transition: 0.25s ease;
+    }
+
+    .category-card:hover {
+      color: inherit;
+      transform: translateY(-7px);
+      box-shadow: 0 22px 40px rgba(0,0,0,0.08);
+    }
+
+    .category-card-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .category-card-body {
+      padding: 22px;
+    }
+
+    .category-card-title {
+      color: var(--brown);
+      font-size: 1.22rem;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .category-card-text {
+      color: #6a514b;
+      line-height: 1.7;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .category-card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--pink-dark);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
     .product-card {
       border: none;
       border-radius: 28px;
@@ -319,6 +531,15 @@
         font-size: 1.45rem;
       }
 
+      .category-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .category-title {
+        font-size: 1.3rem;
+      }
+
       .product-img {
         height: 280px;
       }
@@ -334,6 +555,38 @@
 
       .btn-cart {
         font-size: 0.88rem;
+      }
+
+      .catalog-table {
+        min-width: 680px;
+      }
+
+      .catalog-table th,
+      .catalog-table td {
+        padding: 14px 16px;
+      }
+
+      .catalog-no {
+        width: 58px;
+      }
+
+      .catalog-category-link {
+        gap: 12px;
+      }
+
+      .catalog-thumb {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+      }
+
+      .catalog-category-name {
+        font-size: 1rem;
+      }
+
+      .catalog-desc {
+        max-width: 280px;
+        font-size: 0.84rem;
       }
     }
   </style>
@@ -369,11 +622,12 @@
           <li class="nav-item">
             <a class="nav-link" href="index.html">Beranda</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="promo.html">Promo</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" href="produk.html">Produk</a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" href="about.html">Tentang</a>
           </li>
@@ -411,7 +665,7 @@
   <!-- PRODUK -->
   <section class="pb-5">
     <div class="container">
-      <div class="row g-4">
+      <div class="row g-4" id="catalogGrid">
 
         <!-- PRODUK 1 -->
         <div class="col-md-6 col-lg-4">
@@ -578,7 +832,7 @@
         <div class="col-md-6 col-lg-4">
           <div class="product-card">
             <img
-              src="assets/gambar/cake 8.png"
+              src="assets/gambar/cake 8."
               class="product-img"
               alt="K-Pop Demon Hunters Cake"
             >
@@ -715,7 +969,362 @@
   }
 
   updateCartBadge();
-</script>
+  </script>
+
+  <script type="module">
+    import {
+      formatRupiah,
+      getCart,
+      saveCart,
+      updateCartBadge,
+      loadCatalog,
+      normalizeImageUrl,
+      toArray,
+      getLowestVariant
+    } from './assets/js/store.js';
+
+    let catalogProducts = {};
+    let catalogVariants = {};
+    let catalogCategories = {};
+    let catalogCustomTypes = {};
+    let catalogCustomTemplates = {};
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[char]));
+    }
+
+    function isActive(item) {
+      return item?.active !== false && item?.active !== 'false';
+    }
+
+    function normalizeValue(value) {
+      return String(value || '').trim().toLowerCase();
+    }
+
+    function getProductCategoryId(product) {
+      return product.categoryId || product.category_id || product.category || '';
+    }
+
+    function getProductType(product) {
+      return normalizeValue(product.type || 'regular');
+    }
+
+    function productMatchesCategory(product, category) {
+      const productCategory = normalizeValue(getProductCategoryId(product));
+      const categoryId = normalizeValue(category.id);
+      const categoryName = normalizeValue(category.name);
+
+      return productCategory === categoryId || productCategory === categoryName;
+    }
+
+    function getCategoryLabel(categories, categoryId) {
+      return categories[categoryId]?.name || 'Rafita Cake';
+    }
+
+    function renderProductCard(product, categories) {
+      const variants = catalogVariants[product.id] || {};
+      const activeVariants = toArray(variants).filter((variant) => variant.active !== false);
+      const lowestVariant = getLowestVariant(variants);
+      const variantOptions = activeVariants
+        .map((variant) => `
+          <option value="${escapeHtml(variant.id)}">
+            ${escapeHtml(variant.name)} - ${formatRupiah(variant.price)}
+          </option>
+        `)
+        .join('');
+
+      const priceLabel = lowestVariant
+        ? `Mulai ${formatRupiah(lowestVariant.price)}`
+        : 'Harga belum tersedia';
+
+      return `
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card">
+            <img
+              src="${escapeHtml(product.imageUrl || 'assets/gambar/cake-hero.png')}"
+              class="product-img"
+              alt="${escapeHtml(product.name)}"
+            >
+            <div class="card-body">
+              <span class="badge-pink">${escapeHtml(getCategoryLabel(categories, product.categoryId))}</span>
+              <h3 class="product-name">${escapeHtml(product.name)}</h3>
+              <p class="product-desc">${escapeHtml(product.description)}</p>
+              <p class="harga">${priceLabel}</p>
+
+              <select class="form-select mt-3" id="variant-${escapeHtml(product.id)}" ${activeVariants.length ? '' : 'disabled'}>
+                ${activeVariants.length ? variantOptions : '<option>Belum ada variant</option>'}
+              </select>
+
+              <button
+                class="btn-cart"
+                onclick="addToCartFromFirebase('${escapeHtml(product.id)}')"
+                ${activeVariants.length ? '' : 'disabled'}
+              >
+                <i class="bi bi-bag-plus-fill"></i>
+                Tambah ke Keranjang
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCustomTemplateCard(template, type) {
+      const priceLabel = Number(template.basePrice || 0) > 0
+        ? `Mulai ${formatRupiah(template.basePrice)}`
+        : 'Harga menyesuaikan request';
+
+      return `
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card">
+            <img
+              src="${escapeHtml(template.imageUrl || 'assets/gambar/cake-hero.png')}"
+              class="product-img"
+              alt="${escapeHtml(template.name)}"
+            >
+            <div class="card-body">
+              <span class="badge-pink">${escapeHtml(type?.name || 'Custom Cake')}</span>
+              <h3 class="product-name">${escapeHtml(template.name)}</h3>
+              <p class="product-desc">${escapeHtml(template.notes || type?.description || 'Template custom cake sesuai request pelanggan.')}</p>
+              <p class="harga">${priceLabel}</p>
+              <a class="btn-cart text-decoration-none" href="kontak.html">
+                <i class="bi bi-chat-heart-fill"></i>
+                Konsultasi Custom
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCategoryHeader(category, count, subtitle) {
+      return `
+        <div class="category-heading">
+          <div>
+            <h2 class="category-title">${escapeHtml(category.name)}</h2>
+            <p class="category-subtitle">${escapeHtml(subtitle)}</p>
+          </div>
+          <span class="category-count">${count} produk</span>
+        </div>
+      `;
+    }
+
+    function renderRegularCategorySection(category, products) {
+      const content = products.length
+        ? `
+          <div class="row g-4">
+            ${products.map((product) => renderProductCard(product, catalogCategories)).join('')}
+          </div>
+        `
+        : '<p class="empty-category">Produk untuk kategori ini belum tersedia.</p>';
+
+      return `
+        <section class="category-section">
+          ${renderCategoryHeader(category, products.length, 'Pilihan produk siap pesan dengan variant size dan harga.')}
+          ${content}
+        </section>
+      `;
+    }
+
+    function renderCustomCategorySection(category) {
+      const customTypes = toArray(catalogCustomTypes)
+        .filter((type) => type.active !== false)
+        .sort((a, b) => String(a.name || '').localeCompare(String(b.name || '')));
+      const activeTypeIds = new Set(customTypes.map((type) => type.id));
+
+      const activeTemplates = toArray(catalogCustomTemplates)
+        .filter((template) => template.active !== false && activeTypeIds.has(template.typeId));
+
+      const typeBlocks = customTypes.map((type) => {
+        const templates = activeTemplates
+          .filter((template) => template.typeId === type.id)
+          .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+        return `
+          <div class="custom-type-block">
+            <h3 class="custom-type-title">${escapeHtml(type.name)}</h3>
+            ${type.description ? `<p class="category-subtitle mb-3">${escapeHtml(type.description)}</p>` : ''}
+            ${
+              templates.length
+                ? `<div class="row g-4">${templates.map((template) => renderCustomTemplateCard(template, type)).join('')}</div>`
+                : '<p class="empty-category">Template custom untuk jenis ini belum tersedia.</p>'
+            }
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <section class="category-section">
+          ${renderCategoryHeader(category, activeTemplates.length, 'Pilih kategori custom, lalu pilih template atau tema yang sesuai.')}
+          ${typeBlocks || '<p class="empty-category">Kategori custom cake belum tersedia.</p>'}
+        </section>
+      `;
+    }
+
+    function getCategoryCount(category, products) {
+      if (category.type === 'custom_cake') {
+        return toArray(catalogCustomTemplates)
+          .filter((template) => isActive(template))
+          .length;
+      }
+
+      return products.filter((product) => (
+        productMatchesCategory(product, category) &&
+        getProductType(product) !== 'custom_cake'
+      )).length;
+    }
+
+    function getCategoryDescription(category) {
+      if (category.description) {
+        return category.description;
+      }
+
+      return category.type === 'custom_cake'
+        ? 'Kue custom sesuai keinginan dan kebutuhan Anda.'
+        : 'Pilihan kue dengan berbagai desain dan tema menarik.';
+    }
+
+    function renderCategoryRow(category, count, index) {
+      const image = normalizeImageUrl(category.imageUrl) || 'assets/gambar/cake-hero.png';
+      const categoryUrl = `kategori.html?id=${encodeURIComponent(category.id)}`;
+
+      return `
+        <tr>
+          <td class="catalog-no">${index + 1}</td>
+          <td>
+            <a class="catalog-category-link" href="${categoryUrl}">
+              <img
+                src="${escapeHtml(image)}"
+                class="catalog-thumb"
+                alt="${escapeHtml(category.name)}"
+              >
+              <h3 class="catalog-category-name">${escapeHtml(category.name)}</h3>
+            </a>
+          </td>
+          <td class="catalog-desc">${escapeHtml(getCategoryDescription(category))}</td>
+          <td>
+            <span class="catalog-count">
+              ${count}
+              <small>produk</small>
+            </span>
+          </td>
+        </tr>
+      `;
+    }
+
+    async function renderCatalog() {
+      const grid = document.getElementById('catalogGrid');
+
+      if (!grid) return;
+
+      grid.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <p class="mb-0">Memuat produk...</p>
+        </div>
+      `;
+
+      try {
+        const catalog = await loadCatalog();
+        catalogCategories = catalog.categories;
+        catalogProducts = catalog.products;
+        catalogVariants = catalog.productVariants;
+        catalogCustomTypes = catalog.customCakeTypes;
+        catalogCustomTemplates = catalog.customCakeTemplates;
+
+        const categories = toArray(catalog.categories)
+          .filter((category) => isActive(category))
+          .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+        const products = toArray(catalog.products)
+          .filter((product) => isActive(product))
+          .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+        if (!categories.length) {
+          grid.innerHTML = `
+            <div class="col-12 text-center py-5">
+              <p class="mb-0">Kategori produk belum tersedia.</p>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = `
+          <div class="col-12">
+            <div class="catalog-table-wrap">
+              <div class="table-responsive">
+                <table class="catalog-table">
+                  <thead>
+                    <tr>
+                      <th class="catalog-no">No.</th>
+                      <th>Kategori</th>
+                      <th>Deskripsi</th>
+                      <th>Produk</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${categories
+                      .map((category, index) => renderCategoryRow(category, getCategoryCount(category, products), index))
+                      .join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <p class="mb-0">Produk belum bisa dimuat dari Firebase.</p>
+          </div>
+        `;
+      }
+    }
+
+    window.addToCartFromFirebase = function addToCartFromFirebase(productId) {
+      const product = catalogProducts[productId];
+      const select = document.getElementById(`variant-${productId}`);
+      const variantId = select?.value;
+      const variant = catalogVariants[productId]?.[variantId];
+
+      if (!product || !variant) {
+        alert('Produk atau variant belum tersedia.');
+        return;
+      }
+
+      const cartId = `${productId}:${variantId}`;
+      const cart = getCart();
+      const foundIndex = cart.findIndex((item) => item.id === cartId);
+
+      if (foundIndex > -1) {
+        cart[foundIndex].qty += 1;
+      } else {
+        cart.push({
+          id: cartId,
+          productId,
+          variantId,
+          name: product.name,
+          variantName: variant.name,
+          price: Number(variant.price || 0),
+          image: product.imageUrl || 'assets/gambar/cake-hero.png',
+          qty: 1
+        });
+      }
+
+      saveCart(cart);
+      updateCartBadge();
+      alert(`${product.name} (${variant.name}) berhasil ditambahkan ke keranjang.`);
+    };
+
+    renderCatalog();
+    updateCartBadge();
+  </script>
 
 </body>
 </html>
